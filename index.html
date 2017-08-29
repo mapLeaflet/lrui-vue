@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="module/element-ui/lib/theme-default/index.css" rel="stylesheet">
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        iframe {
+            height: 800px;
+            width: 100%;
+            border: none;
+        }
+        .el-tabs .el-tabs__content{
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <template>
+        <el-tabs type="border-card" active-name="listssss">
+
+            <el-tab-pane label="列表" name="listssss">
+
+                <iframe src="demo/list.html"></iframe>
+
+            </el-tab-pane>
+            <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+            <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+            <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+        </el-tabs>
+    </template>
+
+</div>
+
+
+<script src="module/jquery.min.js"></script>
+<script src="module/vue.min.js"></script>
+<script src="module/element-ui/lib/index.js"></script>
+
+
+</body>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        methods: {
+
+        }
+    })
+
+
+    $("iframe").height($(window).height()-43)
+
+
+</script>
+</html>

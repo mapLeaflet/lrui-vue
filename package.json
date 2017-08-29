@@ -1,0 +1,16 @@
+{
+  "name": "vueSeajs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-connect-proxy": "^0.3.1",
+    "mockjs": "^1.0.1-beta3"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "vue-simplemde": "^0.3.8"
+  }
+}

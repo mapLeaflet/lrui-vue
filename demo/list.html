@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="../module/element-ui/lib/theme-default/index.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="app">
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>默认</h5>
+        </div>
+
+        <lr-list :items="listData"
+                 v-on:item="itemClick"
+                 v-on:item-icon="itemIconClick">
+            <div slot="header">头部自定义</div>
+
+            <div slot="foot">尾部自定义</div>
+        </lr-list>
+
+
+
+
+
+        <pre>
+                    <code class="language-html" data-lang="html">
+
+  &lt;lr-list :items=&quot;listData&quot;  v-on:item=&quot;itemClick&quot;
+                                 v-on:item-icon=&quot;itemIconClick&quot;&gt;
+                            &lt;div slot=&quot;header&quot;&gt;头部自定义&lt;/div&gt;
+
+                            &lt;div slot=&quot;foot&quot;&gt;尾部自定义&lt;/div&gt;
+                        &lt;/lr-list&gt;
+
+                    </code>
+                    </pre>
+
+    </el-card>
+
+
+    <hr>
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>作用域插槽</h5>
+        </div>
+
+        <lr-list :items="listData">
+
+            <!--嵌入template  props 是items 传出来的 数据-->
+            <template scope="props">
+                <div class="list-group-item">
+
+                    <button type="button" v-on:click="itemClick(props.row)"
+                            class="btn btn-link">{{ props.row.name }}
+                    </button>
+
+                    <button type="button" v-on:click="itemIconClick(props.row)"
+                            class="btn btn-link pull-right">{{ props.row.icon }}
+                    </button>
+                </div>
+            </template>
+
+
+        </lr-list>
+
+
+        <pre>
+
+          <code >
+       &lt;lr-list :items=&quot;listData&quot;&gt;
+
+
+            &lt;template scope=&quot;props&quot;&gt;
+                &lt;div class=&quot;list-group-item&quot;&gt;
+
+                    &lt;button type=&quot;button&quot; v-on:click=&quot;itemClick(props.row)&quot;
+                            class=&quot;btn btn-link&quot;&gt;  双大括号  props.row.name 双大括号
+                    &lt;/button&gt;
+
+                    &lt;button type=&quot;button&quot; v-on:click=&quot;itemIconClick(props.row)&quot;
+                            class=&quot;btn btn-link pull-right&quot;&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/template&gt;
+
+
+        &lt;/lr-list&gt;
+          </code>
+        </pre>
+
+    </el-card>
+
+    <hr>
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>带搜索框的</h5>
+        </div>
+
+        <lr-list
+                search
+                :items="listData"
+                v-on:item="itemClick"
+                v-on:item-icon="itemIconClick"></lr-list>
+
+
+        <pre>
+
+          <code >
+
+        &lt;lr-list
+        search
+        :items=&quot;listData&quot;
+        v-on:item=&quot;itemClick&quot;
+        v-on:item-icon=&quot;itemIconClick&quot;&gt;&lt;/lr-list&gt;
+           </code>
+        </pre>
+
+    </el-card>
+
+
+    <hr>
+
+    <el-card class="box-card">
+
+
+        <h5>props参数说明</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>参数</td>
+                <td>说明</td>
+                <td>类型</td>
+                <td>可选值</td>
+                <td>默认值</td>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>items</td>
+                <td>列表数据</td>
+                <td>array</td>
+                <td>--</td>
+                <td>--</td>
+
+            </tr>
+            <tr>
+
+                <td>search</td>
+                <td>搜索框是否显示,直接写上就行</td>
+                <td>boolean</td>
+                <td>--</td>
+                <td>false</td>
+
+            </tr>
+        </table>
+
+
+        <hr>
+
+
+        <h5>事件说明, 在非作用域插槽 的情况下可用</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>事件</td>
+                <td>说明</td>
+                <td>回调参数</td>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>item</td>
+                <td>当前选中行的左侧文字的事件</td>
+                <td>返回当前选中行的数据</td>
+
+
+            </tr>
+            <tr>
+
+                <td>item-icon</td>
+                <td>当前选中行的右侧图标的事件</td>
+                <td>返回当前选中行的数据</td>
+
+
+            </tr>
+        </table>
+
+
+        <hr>
+
+        <h5>slot使用</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>name</td>
+                <td>说明</td>
+
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>无</td>
+                <td>
+
+
+                    直接在组件内部写,用于列表的显示
+                </td>
+
+
+            </tr>
+            <tr>
+
+                <td>foot</td>
+                <td>
+                    用于显示底部
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>header</td>
+                <td>
+                    头部显示
+
+                </td>
+
+            </tr>
+        </table>
+
+
+    </el-card>
+
+
+</div>
+
+<script src="../module/mock.js"></script>
+<script src="../server_data/mock_data.js"></script>
+
+
+<script src="../module/jquery.min.js"></script>
+<script src="../module/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<script src="../module/vue.min.js"></script>
+<script src="../module/vuex/dist/vuex.js"></script>
+<script src="../module/http-vue-loader/httpVueLoader.js"></script>
+<script src="../module/element-ui/lib/index.js"></script>
+<script src="../component/LRcomponents.js"></script>
+
+
+<script>
+
+
+
+    //设置 vue单文件加载器
+    Vue.use(httpVueLoader);
+
+
+    new Vue({
+        el: '#app',
+        components: LRcomponents('/component'),
+//        components: {
+//            '组件名字': 'url:组件路径'
+//        },
+        data: {
+            listData: mockData.listData,
+        },
+        methods: {
+            itemClick: function (item) {
+                console.log(item)
+            },
+            itemIconClick: function (item) {
+
+
+                //删除一行数据
+                this.listData.splice(item, 1);
+                console.log('itemIconClick')
+                console.log(this.listData)
+            }
+        }
+
+    })
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
