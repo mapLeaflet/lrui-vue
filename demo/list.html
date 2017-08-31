@@ -275,13 +275,17 @@
 
 
 
+    var  localhost=window.location.origin;
+    console.log(localhost)
+    console.log(window.location)
+
     //设置 vue单文件加载器
     Vue.use(httpVueLoader);
 
 
     new Vue({
         el: '#app',
-        components: LRcomponents('/component'),
+        components: LRcomponents(localhost+'/component'),
 //        components: {
 //            '组件名字': 'url:组件路径'
 //        },
