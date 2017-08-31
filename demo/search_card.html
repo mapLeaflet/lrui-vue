@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../module/icon/iconfont.css" rel="stylesheet">
+    <link href="../module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <link href="../module/element-ui/lib/theme-default/index.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="app">
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>搜索面板</h5>
+        </div>
+
+
+        <lr-search-card :body="cardBody">
+
+
+            <div slot="header" >
+
+                <lr-search @search="search" @clear="clear"></lr-search>
+
+            </div>
+
+
+            <div class="panel-body">
+                面板内容
+            </div>
+
+        </lr-search-card>
+
+
+        <div style="height: 200px"></div>
+
+
+        <pre>
+                    <code class="language-html" data-lang="html">
+    &lt;lr-search-card :body=&quot;cardBody&quot; bottom&gt;
+
+
+            &lt;div slot=&quot;header&quot; class=&quot;panel-heading&quot; style=&quot;background: #ffffff; padding: 5px;&quot;&gt;
+
+                &lt;lr-search @search=&quot;search&quot; @clear=&quot;clear&quot;&gt;&lt;/lr-search&gt;
+
+            &lt;/div&gt;
+
+
+            &lt;div class=&quot;panel-body&quot;&gt;
+                面板内容
+            &lt;/div&gt;
+
+        &lt;/lr-search-card&gt;
+
+                    </code>
+                    </pre>
+
+    </el-card>
+
+
+
+    <hr>
+
+
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>搜索面板 像上展开</h5>
+        </div>
+        <div style="height: 200px"></div>
+
+        <lr-search-card :body="cardBody" top>
+
+
+            <div slot="header">
+
+                <lr-search @search="search" @clear="clear"></lr-search>
+
+            </div>
+
+
+            <div class="panel-body" style="height: 200px; background: #f0ad4e">
+                面板内容
+            </div>
+
+        </lr-search-card>
+
+
+        <div style="height: 50px"></div>
+
+
+        <pre>
+     &lt;lr-search-card :body=&quot;cardBody&quot; top&gt;
+
+
+            &lt;div slot=&quot;header&quot; class=&quot;panel-heading&quot; style=&quot;background: #ffffff; padding: 5px;&quot;&gt;
+
+                &lt;lr-search @search=&quot;search&quot; @clear=&quot;clear&quot;&gt;&lt;/lr-search&gt;
+
+            &lt;/div&gt;
+
+
+            &lt;div class=&quot;panel-body&quot; style=&quot;height: 200px; background: #f0ad4e&quot;&gt;
+                面板内容
+            &lt;/div&gt;
+
+        &lt;/lr-search-card&gt;
+                    </code>
+                    </pre>
+
+    </el-card>
+
+
+    <hr>
+
+    <el-card class="box-card">
+
+
+        <h5>props参数说明</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>参数</td>
+                <td>说明</td>
+                <td>类型</td>
+                <td>可选值</td>
+                <td>默认值</td>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>body</td>
+                <td>是否展示内容面板</td>
+                <td>Boolean</td>
+                <td>true ,  false</td>
+                <td>true</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>bottom</td>
+                <td>在底部展示内容面板,直接写在 控件属性上 </td>
+                <td>Boolean</td>
+                <td>--</td>
+                <td>--</td>
+
+            </tr>
+
+            <tr>
+
+                <td>top</td>
+                <td>在顶部展示内容面板,直接写在 控件属性上 </td>
+                <td>Boolean</td>
+                <td>--</td>
+                <td>--</td>
+
+            </tr>
+
+        </table>
+
+
+        <hr>
+
+
+
+
+        <h5>slot使用</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>name</td>
+                <td>说明</td>
+
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>header</td>
+                <td>
+                    头部标题栏,
+                </td>
+
+
+            </tr>
+
+            <tr>
+
+                <td>无</td>
+                <td>
+                    详细内容面板
+                </td>
+
+
+            </tr>
+
+        </table>
+
+
+    </el-card>
+
+
+</div>
+
+<script src="../module/mock.js"></script>
+<script src="../server_data/mock_data.js"></script>
+
+
+<script src="../module/jquery.min.js"></script>
+<script src="../module/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<script src="../module/vue.min.js"></script>
+<script src="../module/vuex/dist/vuex.js"></script>
+<script src="../module/http-vue-loader/httpVueLoader.js"></script>
+<script src="../component/LRcomponents.js"></script>
+
+
+<script src="../module/element-ui/lib/index.js"></script>
+
+
+
+
+
+
+<script>
+
+
+    //设置 vue单文件加载器
+    Vue.use(httpVueLoader);
+
+
+    new Vue({
+        el: '#app',
+        components: LRcomponents('/component'),
+//        components: {
+//            '组件名字': 'url:组件路径'
+//        },
+        data: {
+            datalist:[],
+
+            cardBody:true
+        },
+        mounted: function () {
+
+        },
+
+        methods: {
+            search:function () {
+
+                this.cardBody=false;
+            },
+            clear:function () {
+
+                this.cardBody=true;
+            }
+        },
+
+
+    })
+
+
+</script>
+
+
+</body>
+</html>

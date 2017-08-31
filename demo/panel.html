@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../module/icon/iconfont.css" rel="stylesheet">
+    <link href="../module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <link href="../module/element-ui/lib/theme-default/index.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="app">
+
+    <lr-panel>
+
+        <div slot="header">
+
+            <div class="panel-body" style="background: #f0ad4e">
+                <lr-search-card :body="cardBody">
+
+
+                    <div slot="header">
+
+                        <lr-search @search="search" @clear="clear"></lr-search>
+
+
+                    </div>
+
+                    <div class="panel-body">
+                        面板内容
+                    </div>
+
+                </lr-search-card>
+            </div>
+        </div>
+
+
+        <div slot="header">
+            <div class="panel-body" style="background: #f0ad4e">
+                行政区域: 毕节市 检索类型: 非煤矿山
+            </div>
+        </div>
+        <div slot="header">
+            <div class="panel-body" style="background: #f0ad4e">
+                企业名字显示企业名字显示
+                企业名字显示企业名字显示企业名字显示企业名字显示
+                企业名字显示企业名字显示企业名字显示企业名字显示
+                企业名字显示企业名字显示企业名字显示企业名字显示
+            </div>
+        </div>
+
+
+        <div slot="header">
+            <div class="panel-body" style="background: #f0ad4e">
+                <div class="block">
+
+                    <span class="wrapper">
+    <el-button size="small" type="success">成功按钮</el-button>
+    <el-button size="small" type="warning">警告按钮</el-button>
+    <el-button size="small" type="danger">危险按钮</el-button>
+
+  </span>
+                </div>
+            </div>
+        </div>
+
+        asdfasd
+
+        <div slot="foot">
+            ss
+        </div>
+    </lr-panel>
+
+
+</div>
+
+<script src="../module/mock.js"></script>
+<script src="../server_data/mock_data.js"></script>
+
+
+<script src="../module/jquery.min.js"></script>
+<script src="../module/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<script src="../module/vue.min.js"></script>
+<script src="../module/vuex/dist/vuex.js"></script>
+<script src="../module/http-vue-loader/httpVueLoader.js"></script>
+<script src="../component/LRcomponents.js"></script>
+
+
+<script src="../module/element-ui/lib/index.js"></script>
+
+
+<script>
+
+
+    //设置 vue单文件加载器
+    Vue.use(httpVueLoader);
+
+
+    new Vue({
+        el: '#app',
+        components: LRcomponents('/component'),
+//        components: {
+//            '组件名字': 'url:组件路径'
+//        },
+        data: {
+            datalist: [],
+
+            cardBody: false
+        },
+        mounted: function () {
+
+        },
+
+        methods: {
+            search: function () {
+
+                this.cardBody = false;
+            },
+            clear: function () {
+
+                this.cardBody = true;
+            }
+        },
+
+
+    })
+
+
+</script>
+
+
+</body>
+</html>

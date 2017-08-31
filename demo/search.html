@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../module/icon/iconfont.css" rel="stylesheet">
+    <link href="../module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <link href="../module/element-ui/lib/theme-default/index.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="app">
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>带左侧按钮的</h5>
+        </div>
+
+
+        <div class="panel panel-default">
+            <lr-search :auto="auto"
+                       @focus="focus"
+                       @search="search" @clear="clear" @auto-selected="autoSelected" >
+                <template>
+                    <button class="btn btn-link" type="button">
+                        <i class="iconfont icon-gengduo"></i>
+                    </button>
+                </template>
+            </lr-search>
+        </div>
+
+
+
+
+        <p></p>
+
+
+        <pre>
+                    <code class="language-html" data-lang="html">
+      &lt;lr-search :auto=&quot;auto&quot; @search=&quot;search&quot; @clear=&quot;clear&quot; &gt;
+                &lt;template&gt;
+                    &lt;button class=&quot;btn btn-link&quot; type=&quot;button&quot;&gt;
+                        &lt;i class=&quot;iconfont icon-gengduo&quot;&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                &lt;/template&gt;
+            &lt;/lr-search&gt;
+
+                    </code>
+                    </pre>
+
+    </el-card>
+
+
+
+    <hr>
+
+
+
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <h5>默认</h5>
+        </div>
+
+
+        <div class="panel panel-default">
+            <lr-search :auto="auto" @search="search" @clear="clear" @auto-selected="autoSelected"></lr-search>
+        </div>
+
+
+
+
+        <p></p>
+
+
+        <pre>
+                    <code class="language-html" data-lang="html">
+     &lt;lr-search :auto=&quot;auto&quot; @search=&quot;search&quot; @clear=&quot;clear&quot; &gt;&lt;/lr-search&gt;
+
+                    </code>
+                    </pre>
+
+    </el-card>
+
+
+
+
+    <hr>
+
+    <el-card class="box-card">
+
+
+        <h5>props参数说明</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>参数</td>
+                <td>说明</td>
+                <td>类型</td>
+                <td>可选值</td>
+                <td>默认值</td>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>auto</td>
+                <td>搜索框的搜索建议数据源</td>
+                <td>array</td>
+                <td>--</td>
+                <td>--</td>
+
+            </tr>
+
+        </table>
+
+
+        <hr>
+
+
+        <h5>事件说明, 在非作用域插槽 的情况下可用</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>事件</td>
+                <td>说明</td>
+                <td>回调参数</td>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>autoSelected</td>
+                <td>搜索建议列表 选中事件</td>
+                <td>返回当前选中行的数据</td>
+
+
+            </tr>
+            <tr>
+
+                <td>clear</td>
+                <td>清空搜索框内容</td>
+                <td>无返回</td>
+
+
+            </tr>
+
+            <tr>
+
+                <td>search</td>
+                <td>搜索按钮</td>
+                <td>返回 搜索框的值</td>
+
+
+            </tr>
+            <tr>
+
+                <td>focus</td>
+                <td>点击输入框事件</td>
+                <td>返回 搜索框的值</td>
+
+
+            </tr>
+        </table>
+
+
+        <hr>
+
+        <h5>slot使用</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>name</td>
+                <td>说明</td>
+
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>无</td>
+                <td>
+
+
+                    直接在组件内部写,用于左侧内容显示
+                </td>
+
+
+            </tr>
+
+        </table>
+
+
+    </el-card>
+
+
+</div>
+
+<script src="../module/mock.js"></script>
+<script src="../server_data/mock_data.js"></script>
+
+
+<script src="../module/jquery.min.js"></script>
+<script src="../module/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<script src="../module/vue.min.js"></script>
+<script src="../module/vuex/dist/vuex.js"></script>
+<script src="../module/http-vue-loader/httpVueLoader.js"></script>
+<script src="../module/element-ui/lib/index.js"></script>
+<script src="../component/LRcomponents.js"></script>
+
+
+<script>
+
+
+
+    //设置 vue单文件加载器
+    Vue.use(httpVueLoader);
+
+
+    new Vue({
+        el: '#app',
+        components: LRcomponents('/component'),
+//        components: {
+//            '组件名字': 'url:组件路径'
+//        },
+        data: {
+
+            auto:[],
+
+        },
+        mounted:function() {
+            this.auto = this.loadAll();
+        },
+
+        methods: {
+
+            loadAll:function () {
+
+
+                return mockData.searchData
+            },
+
+            search: function (val) {
+                console.log(val);
+
+            },
+
+            clear: function () {
+                console.log('清空')
+
+            },
+            focus: function () {
+                console.log('输入框获取焦点');
+            },
+            //搜索建议选中行
+            autoSelected: function (item) {
+                console.log(item);
+
+
+            },
+
+        }
+
+    })
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
