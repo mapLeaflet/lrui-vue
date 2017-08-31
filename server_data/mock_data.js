@@ -35,7 +35,7 @@
 
     return new Mock.mock({
 
-        'listData|1-10': [
+        'listData|1-200': [
             {
                 'id|+1': 1,
                 'name': /[a-z][a-z][a-z]/,
@@ -43,6 +43,13 @@
             }
         ],
 
+        'listDataZhuanjia|1-200': [
+            {
+                'id|+1': 1,
+                'name': /[A-Z][a-z][a-z]/,
+                'icon': 'glyphicon glyphicon-plus-sign'
+            }
+        ],
 
         'searchData': [
             {"value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号"},

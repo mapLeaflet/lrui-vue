@@ -113,7 +113,17 @@
     .lr-list .list-group {
 
         margin-bottom: 0;
+        border-radius: 0;
     }
+
+    .lr-list .list-group .list-group-item {
+
+
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+    }
+
 
     .lr-list .list-group .btn {
         padding: 0;

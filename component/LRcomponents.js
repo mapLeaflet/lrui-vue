@@ -42,6 +42,7 @@
             'lr-list': 'url:' + paths + '/list/component.vue',
             'lr-search': 'url:' + paths + '/search/component.vue',
             'lr-search-card': 'url:' + paths + '/search_card/component.vue',
+            'lr-search-card2': 'url:' + paths + '/search_card/component.vue',
             'lr-panel': 'url:' + paths + '/panel/component.vue',
         }
     };

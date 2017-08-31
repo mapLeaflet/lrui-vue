@@ -1,7 +1,7 @@
 <script>
     module.exports = {
         props: {
-            auto: Boolean
+            auto: Boolean,
         },
 
 
@@ -17,23 +17,24 @@
 
         mounted: function () {
 
-
             var self = this;
 
 
             //控制中间内容区域,自适应屏幕高度
-            function bodyResize() {
+            var bodyResize = function () {
                 var windowHeight = window.innerHeight;
                 var headerHeight = self.$refs.header.offsetHeight;
                 var footHeight = self.$refs.foot.offsetHeight;
 
 
-                var bodyHeight = windowHeight - headerHeight - footHeight - 2;
+                self.bodyHeight = windowHeight - headerHeight - footHeight - 0;
 
+                self.$refs.body.style.height = String(self.bodyHeight + 'px');
 
-                self.$refs.body.style.height = String(bodyHeight + 'px');
-            }
+                self.$emit('body-height',self.bodyHeight)
+                self.$emit('dom',self.$refs)
 
+            };
 
 
             //如果 auto 存在, 就启用 body区域自适应屏幕
@@ -43,6 +44,7 @@
                 window.onresize = function () {
                     bodyResize()
                 };
+
 
                 bodyResize();
 
@@ -54,7 +56,14 @@
 
         methods: {},
 
-        computed: {}
+        computed: {},
+        updated: function () {
+
+        },
+        destroyed: function () {
+
+        }
+
     }
 </script>
 
@@ -65,11 +74,10 @@
         <div class="panel panel-default">
 
             <div ref="header">
-                <slot name="header">啊上的发上的</slot>
+                <slot name="header"></slot>
             </div>
 
-            <div ref="body" style="overflow-y: auto">
-
+            <div ref="body" class="body" style="overflow-y: auto;">
                 <slot></slot>
             </div>
 
@@ -91,10 +99,18 @@
 
     .lr-panel .panel-default {
         margin: 0;
+        border-radius: 0;
+        background: transparent;
+        border: none;
     }
 
     .lr-panel .panel-body {
         padding: 10px;
+
+    }
+
+    .lr-panel .body {
+        background: #ffffff;
 
     }
 

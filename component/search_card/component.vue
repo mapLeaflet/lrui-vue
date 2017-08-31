@@ -37,7 +37,9 @@
 
 
         methods: {
-
+            liaohui:function () {
+                console.log('鼎鼎大名')
+            }
         },
 
         computed: {
@@ -58,13 +60,14 @@
 <template>
     <div class="lr-search-card">
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" >
 
 
 
 
 
-            <div ref="header" class="panel-heading" style="background: #ffffff; padding: 5px;">
+            <div ref="header" class="panel-heading"
+                 style="background: #ffffff; padding: 5px; padding-right: 1px">
                 <slot name="header" ></slot>
             </div>
 
@@ -74,7 +77,7 @@
             <template v-if="orientation">
 
                 <transition name="fade">
-                    <div class="body bottom"  ref="body" v-show="body" >
+                    <div class="body bottom"  ref="body" v-show="body"  >
 
                         <slot></slot>
                     </div>
@@ -108,11 +111,13 @@
     .lr-search-card {
 
         position: relative;
+        /*border: 1px solid #ddd;*/
     }
 
 
     .lr-search-card .panel-default{
         margin: 0;
+        /*border: 1px solid #ddd;*/
     }
 
     .lr-search-card .panel-body {

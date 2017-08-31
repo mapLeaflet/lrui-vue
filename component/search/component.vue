@@ -113,8 +113,12 @@
 <style scoped>
     /*css 注意css 只作用域当前组件, 在写的时候注意名字 不要和其他组件重复, 推荐只用行内css*/
     .lr-earch {
-        /*padding: 5px 2px;*/
+        padding: 0px 0px;
 
+    }
+
+    .input-group{
+        margin: 0;
     }
 
     .lr-earch .btn {
@@ -148,7 +152,7 @@
         line-height: 34px;
         border: none;
         border-radius: 0 !important;
-        padding-left: 0;
+        padding-left: 5px;
     }
 
 </style>

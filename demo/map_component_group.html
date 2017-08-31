@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../module/icon/iconfont.css" rel="stylesheet">
+    <link href="../module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <link href="../module/element-ui/lib/theme-default/index.css" rel="stylesheet">
+
+    <style>
+        /* 可以设置不同的进入和离开动画 */
+        /* 设置持续时间和动画函数 */
+        .slide-fade-enter-active {
+            transition: all .3s ease;
+        }
+
+        .slide-fade-leave-active {
+            transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+
+        .slide-fade-enter, .slide-fade-leave-to
+            /* .slide-fade-leave-active for below version 2.1.8 */
+        {
+            transform: translateY(10px);
+            opacity: 0;
+        }
+
+        body {
+            background: #f0f0f0;
+        }
+
+        .map-content {
+            position: relative;
+            width: 100%;
+
+            background: #ff0000;
+        }
+
+        .map-panel {
+
+            border-radius: 0 !important;
+            position: absolute;
+            width: 380px;
+            box-shadow: rgba(0, 0, 0, 0.1) 2px 0px 3px 1px;
+        }
+
+        .map-panel-search {
+            width: 380px;
+            background: #008CEC;
+            height: 66px;
+            padding: 10px;
+            padding-bottom: 0;
+
+        }
+
+        .map-panel-header {
+            background: #008CEC;
+            padding: 10px 10px;
+            color: #ffffff;
+        }
+
+        .el-radio-group .el-radio__label {
+            font-size: 12px;
+            font-weight: normal !important;
+        }
+
+        .el-radio-group .el-radio {
+            padding: 0;
+            padding-right: 10px;
+        }
+
+        .el-checkbox-group .el-checkbox__label {
+            font-size: 12px;
+            font-weight: normal !important;
+        }
+
+        .el-checkbox-group .el-checkbox {
+            padding: 0;
+            padding-right: 10px;
+        }
+
+        .radio li {
+            line-height: 30px;
+        }
+
+        .radio .list-inline {
+            margin: 0;
+        }
+
+        .radio h5 {
+            font-weight: normal;
+            color: #008CEC;
+            font-size: 14px;
+        }
+
+        .radio .radio-body {
+            background: #F7F7F7;
+        }
+
+        .resource-selected-btn {
+            background: #F15A24;
+            border-radius: 0 !important;
+
+        }
+
+        .resourcePanelSelected {
+            background: #ffffff;
+            width: 100%;
+            position: absolute;
+            bottom: 40px;
+            border-top: #F15A24 solid 5px;
+            overflow-y: auto;
+        }
+
+        .resource-panel-selected-background {
+            background: rgba(0, 0, 0, 0.3);
+            width: 100%;
+            position: absolute;
+            bottom: 40px;
+
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div id="app">
+    <keep-alive>
+
+        <!--搜索列表-->
+        <lr-panel id="searchList" class="map-panel"
+                  auto v-if="state.searchList">
+            <div slot="header" class="map-panel-search">
+                <!--搜索框占位符-->
+            </div>
+
+
+            <!--<div v-loading="loading2" v-show="loading2" style="height: 100px"></div>-->
+
+            <lr-list
+                    v-loading="loading2"
+                    :items="listData"
+                    v-on:item="itemClick"
+                    v-on:item-icon="itemIconClick">
+                <div slot="header" class="panel-body">
+
+
+                    共有211条信息
+
+                </div>
+
+            </lr-list>
+
+        </lr-panel>
+
+    </keep-alive>
+
+
+    <keep-alive>
+
+        <!--企业详细列表-->
+        <lr-panel id="enterprisePanel" class="map-panel"
+                  auto v-if="state.enterprisePanel">
+            <div slot="header">
+
+                <div class="map-panel-search"></div>
+
+
+                <div class="map-panel-header">
+                    行政区域:毕节市毕节市 类型:非煤矿山
+                </div>
+                <div class="map-panel-header">
+                    企业名字企业名字企业名字企业名字企业名字企业名字企业名字
+                    企业名字企业名字企业名字企业名字企业名
+                </div>
+
+                <div class="map-panel-header" style="background: #0080E0">
+
+                    <div style="width: 100%">
+                        <el-button type="primary" size="small">成功按钮</el-button>
+                        <el-button type="primary" size="small">警告按钮</el-button>
+                        <el-button type="primary" size="small">危险按钮</el-button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="radio">
+                <h5 class="panel-body">事故类型</h5>
+                <div class="panel-body radio-body">
+
+                    <el-radio-group v-model="radio2">
+
+                        <ul class="list-inline">
+                            <li>
+                                <el-radio :label="1">爆炸</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="2">突出</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="3">火灾</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="4">水害</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="5">机电</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="6">运输</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="7">顶板</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="8">其他</el-radio>
+                            </li>
+                        </ul>
+
+                    </el-radio-group>
+
+
+                </div>
+            </div>
+
+
+            <div class="radio">
+                <h5 class="panel-body">事故级别</h5>
+                <div class="panel-body radio-body">
+
+                    <el-radio-group v-model="radio2">
+
+                        <ul class="list-inline">
+                            <li>
+                                <el-radio :label="1">一般事故</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="2">较大事故</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="3">重大事故</el-radio>
+                            </li>
+                            <li>
+                                <el-radio :label="4">特别重大事故</el-radio>
+                            </li>
+
+                        </ul>
+
+                    </el-radio-group>
+
+
+                </div>
+            </div>
+
+
+            <div class="radio">
+                <h5 class="panel-body">搜索范围</h5>
+
+
+                <div class="panel-body radio-body">
+
+
+                    <div style="padding: 10px">
+                        <el-slider
+                                v-model="value8"
+                                show-input>
+                        </el-slider>
+                    </div>
+
+
+                    <el-checkbox-group v-model="checkList">
+                        <ul class="list-inline">
+                            <li>
+                                <el-checkbox label="专家"></el-checkbox>
+                            </li>
+                            <li>
+                                <el-checkbox label="队伍"></el-checkbox>
+                            </li>
+                            <li>
+                                <el-checkbox label="物资库"></el-checkbox>
+                            </li>
+                            <li>
+                                <el-checkbox label="附近企业"></el-checkbox>
+                            </li>
+                        </ul>
+                    </el-checkbox-group>
+
+
+                </div>
+            </div>
+
+
+            <div slot="foot" style="background: #F2F2F2; padding: 10px 5px">
+                <el-button type="danger" class="btn-block" @click="resource">在地图上查看所选数据</el-button>
+
+            </div>
+        </lr-panel>
+
+    </keep-alive>
+
+
+    <keep-alive>
+
+        <!--应急资源面板-->
+        <lr-panel id="resourcePanel" class="map-panel"
+
+                  @body-height="bodyHeight"
+
+                  auto v-if="state.resourcePanel">
+            <div slot="header">
+
+                <div class="map-panel-search"></div>
+
+
+                <div class="map-panel-header">
+                    行政区域:毕节市毕节市 类型:非煤矿山
+                </div>
+                <div class="map-panel-header">
+                    企业名字企业名字企业名字企业名字企业名字企业名字企业名字
+                    企业名字企业名字企业名字企业名字企业名
+                </div>
+
+                <div class="map-panel-header" style="background: #0080E0">
+
+                    <div style="width: 100%">
+                        <el-button type="primary" size="small">成功按钮</el-button>
+                        <el-button type="primary" size="small">警告按钮</el-button>
+                        <el-button type="primary" size="small">危险按钮</el-button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <template>
+                <el-tabs @tab-click="handleClick" v-model="state.resourcePanelTable">
+                    <el-tab-pane label="专家" name="tab_1">
+
+                        <lr-list v-loading="loading2"
+                                 search
+                                 :items="listDataZhuanjia"
+                                 v-on:item-icon="itemIconClick"></lr-list>
+
+
+                    </el-tab-pane>
+                    <el-tab-pane label="队伍" name="tab_2">
+
+                        <lr-list v-loading="loading2"
+                                 search
+                                 :items="listDataZhuanjia"
+                                 v-on:item-icon="itemIconClick"></lr-list>
+
+                    </el-tab-pane>
+                    <el-tab-pane label="物资库" name="tab_3">
+
+                        <lr-list v-loading="loading2"
+                                 search
+                                 :items="listDataZhuanjia"
+                                 v-on:item-icon="itemIconClick"></lr-list>
+                    </el-tab-pane>
+                    <el-tab-pane label="周边企业" name="tab_4">
+                        <lr-list v-loading="loading2"
+                                 search
+                                 :items="listDataZhuanjia"
+                                 v-on:item-icon="itemIconClick"></lr-list>
+                    </el-tab-pane>
+                    <el-tab-pane label="周边企业2" name="tab_5">
+                        <lr-list v-loading="loading2"
+                                 search
+                                 :items="listDataZhuanjia"
+                                 v-on:item-icon="itemIconClick"></lr-list>
+                    </el-tab-pane>
+                </el-tabs>
+            </template>
+
+
+            <div slot="foot">
+                <transition name="slide-fade">
+
+                    <div
+                            @click="resourceSelected"
+                            v-bind:style="{height:(state.resourcePanelSelectedHeight)+'px'}"
+                         class="resource-panel-selected-background" v-show="state.resourcePanelSelected"></div>
+
+                </transition>
+
+                <transition name="slide-fade">
+                    <div v-bind:style="{height:(state.resourcePanelSelectedHeight-50)+'px'}"
+                         class="resourcePanelSelected" v-show="state.resourcePanelSelected">
+
+                        <lr-list
+                                 search
+                                 :items="state.listDataYixuan"
+                                 v-on:item-icon="itemIconClick"></lr-list>
+
+
+                    </div>
+                </transition>
+
+
+                <el-button
+                        class="btn-block resource-selected-btn"
+                        type="danger" @click="resourceSelected">
+                    <div class="pull-left">已选资源列表</div>
+
+                    <span class="badge pull-right" style="background: #ae3f1b">3</span></el-button>
+
+            </div>
+
+        </lr-panel>
+
+    </keep-alive>
+
+
+    <!--搜索按钮-->
+    <div slot="header" class="map-panel-search" style="background: transparent">
+        <lr-search-card
+
+                :body="cardBody"
+                bottom>
+
+            <div slot="header">
+                <lr-search
+                        @search="search" @clear="clear" @focus="focus"></lr-search>
+
+            </div>
+
+
+            <div class="panel-body" style="box-shadow: rgba(0, 0, 0, 0.1) 0 3px 2px 1px;">
+                面板内容
+            </div>
+        </lr-search-card>
+
+    </div>
+
+
+</div>
+
+
+<script src="../module/mock.js"></script>
+<script src="../server_data/mock_data.js"></script>
+
+
+<script src="../module/jquery.min.js"></script>
+<script src="../module/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<script src="../module/vue.min.js"></script>
+<script src="../module/vuex/dist/vuex.js"></script>
+<script src="../module/http-vue-loader/httpVueLoader.js"></script>
+<script src="../module/element-ui/lib/index.js"></script>
+<script src="../component/LRcomponents.js"></script>
+
+
+<script>
+
+
+    //设置 vue单文件加载器
+    Vue.use(httpVueLoader);
+
+
+    var paenlState = {
+        searchList: false,
+        enterprisePanel: false,
+        resourcePanel: false,
+        resourcePanelSelected: false,
+        resourcePanelSelectedHeight: 0,
+        resourcePanelTable:'tab_1',
+        listDataYixuan:[]
+    };
+
+
+    new Vue({
+        el: '#app',
+        components: LRcomponents('../component'),
+//        components: {
+//            '组件名字': 'url:组件路径'
+//        },
+        data: {
+            cardBody: true,
+            radio2: 1,
+            value8: 0,
+            checkList: [],
+            state: paenlState,
+            listData: [],
+            listDataZhuanjia: [],
+            loading2: false
+
+        },
+        mounted: function () {
+
+        },
+
+        methods: {
+            search: function () {
+
+                var self = this;
+                self.cardBody = false;
+
+                self.state.enterprisePanel = false;
+                self.state.resourcePanel = false;
+                self.state.resourcePanelSelected = false;
+                self.state.searchList = true;
+
+                self.loading2=true;
+                self.listData=[];
+                setTimeout(function () {
+                    self.loading2 = false;
+                    self.listData = mockData.listData
+
+                }, 1000)
+
+            },
+            clear: function () {
+
+                this.cardBody = true;
+                this.state.resourcePanelSelected = false;
+                this.state.searchList = false;
+                this.state.enterprisePanel = false;
+                this.state.resourcePanel = false;
+            },
+            focus: function () {
+                this.cardBody = true;
+            },
+
+
+            itemClick: function (item) {
+                console.log(item)
+                this.cardBody = false;
+                this.state.resourcePanelSelected = false;
+                this.state.searchList = false;
+                this.state.resourcePanel = false;
+                this.state.enterprisePanel = true;
+
+
+            },
+            itemIconClick: function (item) {
+
+
+                //删除一行数据
+                this.listData.splice(item, 1);
+                console.log('itemIconClick')
+                console.log(this.listData)
+            },
+            resource: function () {
+
+                var self =this;
+                this.cardBody = false;
+                this.state.searchList = false;
+                this.state.resourcePanelSelected = false;
+                this.state.enterprisePanel = false;
+                this.state.resourcePanel = true;
+
+                self.loading2 = true;
+                self.listDataZhuanjia=[];
+                setTimeout(function () {
+                    self.loading2 = false;
+                    self.listDataZhuanjia = mockData.listDataZhuanjia
+
+                }, 1000);
+            },
+            resourceSelected: function () {
+                var self =this;
+                this.state.resourcePanelSelected = !this.state.resourcePanelSelected;
+                self.state.listDataYixuan = mockData.listDataZhuanjia
+
+
+
+            },
+            bodyHeight: function (val) {
+                console.log(val);
+
+                this.state.resourcePanelSelectedHeight = val
+            },
+            handleClick(tab, event) {
+
+                var self =this;
+                self.loading2 = true;
+                self.listDataZhuanjia=[];
+
+                switch (tab.name) {
+                    case 'tab_1':
+                        setTimeout(function () {
+                            self.loading2 = false;
+                            self.listDataZhuanjia = mockData.listDataZhuanjia
+
+                        }, 1000);
+
+                        break;
+
+
+                    case 'tab_2':
+                        setTimeout(function () {
+                            self.loading2 = false;
+                            self.listDataZhuanjia = mockData.listDataZhuanjia
+
+                        }, 1000);
+
+                        break;
+
+
+                    case 'tab_3':
+                        setTimeout(function () {
+                            self.loading2 = false;
+                            self.listDataZhuanjia = mockData.listDataZhuanjia
+
+                        }, 1000);
+
+                        break;
+
+
+                    case 'tab_4':
+                        setTimeout(function () {
+                            self.loading2 = false;
+                            self.listDataZhuanjia = mockData.listDataZhuanjia
+
+                        }, 1000);
+
+                        break;
+
+
+                    case 'tab_5':
+                        setTimeout(function () {
+                            self.loading2 = false;
+                            self.listDataZhuanjia = mockData.listDataZhuanjia
+
+                        }, 1000);
+
+                        break;
+
+                }
+
+
+                console.log(tab, event);
+            }
+
+        }
+
+    })
+
+
+</script>
+
+
+</body>
+</html>
