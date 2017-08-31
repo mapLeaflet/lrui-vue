@@ -13,11 +13,11 @@
 
 <div id="app">
 
-    <lr-panel>
+    <lr-panel auto>
 
         <div slot="header">
 
-            <div class="panel-body" style="background: #f0ad4e">
+            <div class="panel-body" style="background: #3782f0">
                 <lr-search-card :body="cardBody">
 
 
@@ -38,22 +38,23 @@
 
 
         <div slot="header">
-            <div class="panel-body" style="background: #f0ad4e">
+            <div class="panel-body" style="background: #3782f0">
                 行政区域: 毕节市 检索类型: 非煤矿山
             </div>
         </div>
         <div slot="header">
-            <div class="panel-body" style="background: #f0ad4e">
+            <div class="panel-body" style="background: #3782f0">
                 企业名字显示企业名字显示
                 企业名字显示企业名字显示企业名字显示企业名字显示
                 企业名字显示企业名字显示企业名字显示企业名字显示
                 企业名字显示企业名字显示企业名字显示企业名字显示
             </div>
+
         </div>
 
 
         <div slot="header">
-            <div class="panel-body" style="background: #f0ad4e">
+            <div class="panel-body" style="background: #3782f0">
                 <div class="block">
 
                     <span class="wrapper">
@@ -66,13 +67,128 @@
             </div>
         </div>
 
-        asdfasd
+
 
         <div slot="foot">
-            ss
+            <div class="panel-body" style="background: #f08e80; height: 100px">
+
+                阿的萨法撒旦法
+            </div>
+
         </div>
     </lr-panel>
 
+
+
+
+    <div style="height: 50px"></div>
+
+
+    <pre>
+         &lt;lr-panel auto&gt;
+
+        &lt;div slot=&quot;header&quot;&gt;
+         顶部区域
+        &lt;/div&gt;
+
+       中间区域
+
+        &lt;div slot=&quot;foot&quot;&gt;
+            底部
+        &lt;/div&gt;
+    &lt;/lr-panel&gt;
+        </code>
+                    </pre>
+
+
+    <el-card class="box-card">
+
+
+        <h5>props参数说明</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>参数</td>
+                <td>说明</td>
+                <td>类型</td>
+                <td>可选值</td>
+                <td>默认值</td>
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>auto</td>
+                <td>控制中间内容区域,自适应屏幕高度, 如果属性里面写了,就是自动适应,
+                <br> 中间内容区域的高度 是减去 顶部 和底部, 然后整个面板把 窗口撑满
+
+                </td>
+                <td>Boolean</td>
+                <td>--</td>
+                <td>--</td>
+
+            </tr>
+
+
+
+        </table>
+
+
+        <hr>
+
+
+
+
+        <h5>slot使用</h5>
+        <table class="table">
+            <thead>
+            <tr>
+
+                <td>名称</td>
+                <td>说明</td>
+
+
+            </tr>
+            </thead>
+
+
+            <tr>
+
+                <td>header</td>
+                <td>
+                    头部标题栏,
+                </td>
+
+
+            </tr>
+
+            <tr>
+
+                <td>无</td>
+                <td>
+                    详细内容面板
+                </td>
+
+
+            </tr>
+
+            <tr>
+
+                <td>foot</td>
+                <td>
+                    底部区域
+                </td>
+
+
+            </tr>
+
+        </table>
+
+
+    </el-card>
 
 </div>
 
@@ -91,6 +207,7 @@
 
 
 <script src="../module/element-ui/lib/index.js"></script>
+
 
 
 <script>
