@@ -7,7 +7,7 @@
     <link href="../module/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
     <link href="../module/element-ui/lib/theme-default/index.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="../module/iview/iview.css">
     <style>
         /* 可以设置不同的进入和离开动画 */
         /* 设置持续时间和动画函数 */
@@ -120,6 +120,12 @@
             bottom: 40px;
 
         }
+
+
+       #enterprisePanel .el-tabs__item{
+            width: 126px;
+            text-align: center;
+        }
     </style>
 
 
@@ -176,130 +182,161 @@
                     企业名字企业名字企业名字企业名字企业名
                 </div>
 
-                <div class="map-panel-header" style="background: #0080E0">
+                <!--<div class="map-panel-header" style="background: #0080E0">-->
 
-                    <div style="width: 100%">
-                        <el-button type="primary" size="small">成功按钮</el-button>
-                        <el-button type="primary" size="small">警告按钮</el-button>
-                        <el-button type="primary" size="small">危险按钮</el-button>
-                    </div>
+                    <!--<div style="width: 100%">-->
+                        <!--<el-button type="primary" size="small">成功按钮</el-button>-->
+                        <!--<el-button type="primary" size="small">警告按钮</el-button>-->
+                        <!--<el-button type="primary" size="small">危险按钮</el-button>-->
+                    <!--</div>-->
 
-                </div>
+                <!--</div>-->
 
 
             </div>
 
 
-            <div class="radio">
-                <h5 class="panel-body">事故类型</h5>
-                <div class="panel-body radio-body">
-
-                    <el-radio-group v-model="radio2">
-
-                        <ul class="list-inline">
-                            <li>
-                                <el-radio :label="1">爆炸</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="2">突出</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="3">火灾</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="4">水害</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="5">机电</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="6">运输</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="7">顶板</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="8">其他</el-radio>
-                            </li>
-                        </ul>
-
-                    </el-radio-group>
 
 
-                </div>
-            </div>
+                <el-tabs v-model="state.enterprisePanelTab">
+                    <el-tab-pane label="企业信息" name="tab_1">用户管理</el-tab-pane>
+                    <el-tab-pane label="救援参数" name="tab_2">配置管理</el-tab-pane>
+                    <el-tab-pane label="事故应急" name="tab_3">
 
 
-            <div class="radio">
-                <h5 class="panel-body">事故级别</h5>
-                <div class="panel-body radio-body">
-
-                    <el-radio-group v-model="radio2">
-
-                        <ul class="list-inline">
-                            <li>
-                                <el-radio :label="1">一般事故</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="2">较大事故</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="3">重大事故</el-radio>
-                            </li>
-                            <li>
-                                <el-radio :label="4">特别重大事故</el-radio>
-                            </li>
-
-                        </ul>
-
-                    </el-radio-group>
 
 
-                </div>
-            </div>
+                        <div>
+
+                            <div class="radio">
+                                <h5 class="panel-body" style="padding-top: 0">事故类型</h5>
+                                <div class="panel-body radio-body">
+
+                                    <el-radio-group v-model="radio2">
+
+                                        <ul class="list-inline">
+                                            <li>
+                                                <el-radio :label="1">爆炸</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="2">突出</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="3">火灾</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="4">水害</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="5">机电</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="6">运输</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="7">顶板</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="8">其他</el-radio>
+                                            </li>
+                                        </ul>
+
+                                    </el-radio-group>
 
 
-            <div class="radio">
-                <h5 class="panel-body">搜索范围</h5>
+                                </div>
+                            </div>
 
 
-                <div class="panel-body radio-body">
+                            <div class="radio">
+                                <h5 class="panel-body">事故级别</h5>
+                                <div class="panel-body radio-body">
+
+                                    <el-radio-group v-model="radio2">
+
+                                        <ul class="list-inline">
+                                            <li>
+                                                <el-radio :label="1">一般事故</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="2">较大事故</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="3">重大事故</el-radio>
+                                            </li>
+                                            <li>
+                                                <el-radio :label="4">特别重大事故</el-radio>
+                                            </li>
+
+                                        </ul>
+
+                                    </el-radio-group>
 
 
-                    <div style="padding: 10px">
-                        <el-slider
-                                v-model="value8"
-                                show-input>
-                        </el-slider>
-                    </div>
+                                </div>
+                            </div>
+
+                            <div class="radio">
+                                <h5 class="panel-body">搜索范围</h5>
 
 
-                    <el-checkbox-group v-model="checkList">
-                        <ul class="list-inline">
-                            <li>
-                                <el-checkbox label="专家"></el-checkbox>
-                            </li>
-                            <li>
-                                <el-checkbox label="队伍"></el-checkbox>
-                            </li>
-                            <li>
-                                <el-checkbox label="物资库"></el-checkbox>
-                            </li>
-                            <li>
-                                <el-checkbox label="附近企业"></el-checkbox>
-                            </li>
-                        </ul>
-                    </el-checkbox-group>
+                                <div class="panel-body radio-body">
+
+                                    <div style="
+                                    padding: 0px 2px 0px 15px;
+                                    margin: 5px;
+                                    background: #ffffff;
+                                    border-radius: 5px;
+                                    border: 1px solid #e8e8e8;">
 
 
-                </div>
-            </div>
+                                        <template>
+                                            <Slider v-model="sliderValue"
+                                                    :tip-format="formatSlider"
+                                                    :step="50" :max="1000" show-stops show-input></Slider>
+                                        </template>
+                                    </div>
 
 
-            <div slot="foot" style="background: #F2F2F2; padding: 10px 5px">
-                <el-button type="danger" class="btn-block" @click="resource">在地图上查看所选数据</el-button>
+                                    <el-checkbox-group v-model="checkList">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <el-checkbox label="专家"></el-checkbox>
+                                            </li>
+                                            <li>
+                                                <el-checkbox label="队伍"></el-checkbox>
+                                            </li>
+                                            <li>
+                                                <el-checkbox label="物资库"></el-checkbox>
+                                            </li>
+                                            <li>
+                                                <el-checkbox label="附近企业"></el-checkbox>
+                                            </li>
+                                        </ul>
+                                    </el-checkbox-group>
 
-            </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div style=" padding: 15px; margin-top: 20px">
+                            <el-button type="danger" class="btn-block" @click="resource">在地图上查看所选数据</el-button>
+
+                        </div>
+
+
+                    </el-tab-pane>
+                </el-tabs>
+
+
+
+
+
+
+
+
         </lr-panel>
 
     </keep-alive>
@@ -326,15 +363,15 @@
                     企业名字企业名字企业名字企业名字企业名
                 </div>
 
-                <div class="map-panel-header" style="background: #0080E0">
+                <!--<div class="map-panel-header" style="background: #0080E0">-->
 
-                    <div style="width: 100%">
-                        <el-button type="primary" size="small">成功按钮</el-button>
-                        <el-button type="primary" size="small">警告按钮</el-button>
-                        <el-button type="primary" size="small">危险按钮</el-button>
-                    </div>
+                    <!--<div style="width: 100%">-->
+                        <!--<el-button type="primary" size="small">成功按钮</el-button>-->
+                        <!--<el-button type="primary" size="small">警告按钮</el-button>-->
+                        <!--<el-button type="primary" size="small">危险按钮</el-button>-->
+                    <!--</div>-->
 
-                </div>
+                <!--</div>-->
 
 
             </div>
@@ -342,12 +379,14 @@
 
             <template>
                 <el-tabs @tab-click="handleClick" v-model="state.resourcePanelTable">
-                    <el-tab-pane label="专家" name="tab_1">
+                    <el-tab-pane label="专家 (12)" name="tab_1">
 
                         <lr-list v-loading="loading2"
                                  search
                                  :items="listDataZhuanjia"
                                  v-on:item-icon="itemIconClick"></lr-list>
+                    </el-tab-pane>
+
 
 
                     </el-tab-pane>
@@ -457,7 +496,9 @@
 <script src="../module/vuex/dist/vuex.js"></script>
 <script src="../module/http-vue-loader/httpVueLoader.js"></script>
 <script src="../module/element-ui/lib/index.js"></script>
+<script src="../module/iview/iview.min.js"></script>
 <script src="../component/LRcomponents.js"></script>
+
 
 
 <script>
@@ -470,6 +511,7 @@
     var paenlState = {
         searchList: false,
         enterprisePanel: false,
+        enterprisePanelTab:'tab_1',
         resourcePanel: false,
         resourcePanelSelected: false,
         resourcePanelSelectedHeight: 0,
@@ -487,7 +529,7 @@
         data: {
             cardBody: true,
             radio2: 1,
-            value8: 0,
+            sliderValue: 0,
             checkList: [],
             state: paenlState,
             listData: [],
@@ -570,7 +612,7 @@
             resourceSelected: function () {
                 var self =this;
                 this.state.resourcePanelSelected = !this.state.resourcePanelSelected;
-                self.state.listDataYixuan = mockData.listDataZhuanjia
+                self.state.listDataYixuan = mockData.listData
 
 
 
@@ -580,7 +622,7 @@
 
                 this.state.resourcePanelSelectedHeight = val
             },
-            handleClick(tab, event) {
+            handleClick:function(tab, event) {
 
                 var self =this;
                 self.loading2 = true;
@@ -640,6 +682,11 @@
 
 
                 console.log(tab, event);
+            },
+
+            //滑块文字格式化
+            formatSlider :function(val) {
+                return val + '千米';
             }
 
         }
